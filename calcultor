@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    float price; // car price
+    float down; // downpayment
+    float cost; // loan amount
+    float interest; // annual interest rate
+    float month; // number of months
+    float actint; // monthly interest rate
+    float monthly; // monthly payment
+
+    while(true){
+        cout << "What is the price of the car (no comma): ";
+        cin >> price;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\nNo letters allowed(Hit run to do again)\n";
+            break;
+        } else if(price < 0){
+            cout << "Only positive numbers allowed:(Hit run to do again) ";
+            break;
+        }
+
+        cout << "\nHow much are you putting down: ";
+        cin >> down;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\nNo letters allowed(Hit run to do again)\n";
+            break;
+        } else if(down < 0){
+            cout << "Only positive numbers allowed:(Hit run to do again) ";
+            break;
+        }
+
+        cost = price - down;
+
+        cout << "\nHow much interest rate (%): ";
+        cin >> interest;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\nNo letters allowed(Hit run to do again)\n";
+            break;
+        }else if(interest < 0){
+            cout << "Only positive numbers allowed:(Hit run to do again) ";
+            break;
+        }
+
+        actint = interest / 12 / 100;
+
+        cout << "\nHow many months loan: ";
+        cin >> month;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n'); 
+            cout << "\nNo letters allowed(Hit run to do again)\n";
+            break;
+        }else if(month < 0){
+            cout << "Only positive numbers allowed:(Hit run to do again) ";
+            break;
+        }
+
+        monthly = cost * actint * pow(1 + actint, month) /
+                  (pow(1 + actint, month) - 1);
+
+        cout << "\nYour monthly payment is = $" << monthly << endl;
+
+        break;
+    }
+
+    return 0;
+}
